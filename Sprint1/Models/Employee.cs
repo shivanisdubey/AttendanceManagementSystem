@@ -9,6 +9,8 @@ namespace Sprint1.Models
     {
         [Key]
         public int EmployeeId { get; set; }
+        public string EmployeeEmailId { get; set; }
+        public DateTime EmployeeDOB { get; set; }
         
         public string EmployeeName { get; set; }
 

@@ -9,7 +9,7 @@ namespace Sprint1.Repositories
         void AddEmployeeProject(EmployeeProject project);
         void AddEmployeeProjectByProjectId(int EmployeeId,int ProjectId);
         void AddEmployeeProjectByProjectName(int EmployeeId,string ProjectName);
-        List<EmployeeProject> GetEmployeeProject(int id);
+        List<EmployeeProject> GetEmployeeProject(int ProjectId);
         void DeleteEmployeeProject(EmployeeProject project);
     }
 }

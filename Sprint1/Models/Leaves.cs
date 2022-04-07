@@ -11,6 +11,7 @@ namespace Sprint1.Models
     {
         [ForeignKey("Employee")]
         public int EmployeeId { get; set; }
+        private int LeaveId { get; set; }
         public DateTime LeaveStartDate { get; set; }
         public DateTime LeaveEndDate { get; set; }
         public Employee Employee { get; set; }//Navigation Property
