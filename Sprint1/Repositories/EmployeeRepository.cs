@@ -6,8 +6,6 @@ using Sprint1.Models;
 using Sprint1.Repositories;
 using Microsoft.EntityFrameworkCore;
 
-
-
 namespace Sprint1
 {
 

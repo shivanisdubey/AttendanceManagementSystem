@@ -54,9 +54,8 @@ namespace Sprint1.Repositories
 
         public void UpdateAttendance(Attendance attendance)
         {
-            Attendance a=db.Attendance.Find(attendance.AttendanceId);
-            DeleteAttendance(a);
-            db.Add(attendance);
+            db.Update(attendance);
+            db.SaveChanges();
         }
     }
 }

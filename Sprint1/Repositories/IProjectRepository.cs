@@ -8,6 +8,6 @@ namespace Sprint1.Repositories
     {
         void AddProject(Project project);
         void UpdateProject(Project project);
-        void DeleteProject(Project project);
+        void DeleteProjectById(int ProjectId);
     }
 }

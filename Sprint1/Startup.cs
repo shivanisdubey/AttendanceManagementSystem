@@ -10,6 +10,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Sprint1.Models;
+using Sprint1.Repositories;
 
 namespace Sprint1
 {
@@ -27,6 +29,8 @@ namespace Sprint1
         {
 
             services.AddControllers();
+            services.AddScoped<IAttendanceRepository,AttendanceRepository>();
+            services.AddScoped<IProjectRepository, ProjectRepository>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Sprint1", Version = "v1" });

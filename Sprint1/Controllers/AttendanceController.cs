@@ -40,15 +40,23 @@ namespace Sprint1.Controllers
         {
             return _attendanceRepository.GetAttendanceByYear(EmployeeId, year);
         }
-        [HttpPost("{update_attendance}")]
+        [HttpPost]
+        [Route("update attendance")]
         public void UpdateAttendance(Attendance attendance)
         {
             _attendanceRepository.UpdateAttendance(attendance);
         }
         [HttpPost]
+        [Route("add attendance")]
         public void AddAttendance(Attendance attendance)
         {
             _attendanceRepository.AddAttendance(attendance);
+        }
+        [HttpPost]
+        [Route("delete attendance")]
+        public void DeleteAttendance(Attendance attendance)
+        {
+            _attendanceRepository.DeleteAttendance(attendance);
         }
     }
 }

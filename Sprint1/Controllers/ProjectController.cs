@@ -18,23 +18,31 @@ namespace Sprint1.Controllers
         {
             _projectRepository = projectRepository;
         }
-        [HttpGet]
-        [Route("Add Project/{AddProject}")]
-        public void AddProject(Project project)
+        [HttpPost]
+        [Route("Add Project")]
+        public IActionResult AddProject(Project project)
         {
-            _projectRepository.AddProject(project);
+            try
+            {
+                _projectRepository.AddProject(project);
+                return Ok("Project Added");
+            }
+            catch(Exception ex)
+            {
+                return Content(ex.Message);
+            }
         }
 
-        [HttpGet]
-        [Route("Update Project/{Update Project}")]
+        [HttpPost]
+        [Route("Update Project")]
         public void UpdateProject(Project project)
         {
             _projectRepository.UpdateProject(project);
         }
 
-        [HttpGet]
-        [Route("Delete Project/{ProjectId}")]
-        public void DeleteProjectByTD(int Pid)
+        [HttpPost]
+        [Route("Delete Project")]
+        public void DeleteProjectById(int Pid)
         {
             _projectRepository.DeleteProjectById(Pid);
         }
