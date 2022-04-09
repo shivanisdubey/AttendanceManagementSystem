@@ -70,14 +70,5 @@ namespace Sprint1.Controllers
             employeerepository.DeleteEmployeeById(id);
         }
 
-        [HttpPost]
-        [Route("DeleteEmployeeByName/{name}")]
-        public void DeleteEmployeeByName(string name)
-        {
-            employeerepository.DeleteEmployeeByName(name);
-        }
-
-
-
     }
 }
