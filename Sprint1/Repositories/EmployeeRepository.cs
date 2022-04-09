@@ -11,12 +11,12 @@ namespace Sprint1
 
     public class EmployeeRepository : IEmployeeRepository
     {
-        private SprintDbContext dbContext = null;
+        private readonly SprintDbContext dbContext;
 
 
-        public EmployeeRepository(SprintDbContext dbContext) //Constructor
+        public EmployeeRepository() //Constructor
         {
-            this.dbContext = dbContext;
+            this.dbContext = new SprintDbContext();
         }
         public void AddEmployee(Employee employee) //Add Employees all fields
         {
@@ -67,18 +67,12 @@ namespace Sprint1
             return employee;
         }
 
-        public void UpdateEmployeeById(Employee employee)
+        public void UpdateEmployee(Employee employee)
         {
             dbContext.Employee.Update(employee);
             dbContext.SaveChanges();
         }
 
-        public void UpdateEmployeeByName(Employee employee)
-        {
-            dbContext.Employee.Update(employee);
-            dbContext.SaveChanges();
-
-        }
     }
 
 

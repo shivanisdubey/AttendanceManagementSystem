@@ -30,6 +30,10 @@ namespace Sprint1
 
             services.AddControllers();
             services.AddScoped<IAttendanceRepository,AttendanceRepository>();
+            services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+            services.AddScoped<IEmployeeProjectRepository, EmployeeProjectRepository>();
+            services.AddScoped<ILoginRepository, LoginRepository>();
+            services.AddScoped<ILeaveRepository, LeaveRepository>();
             services.AddScoped<IProjectRepository, ProjectRepository>();
             services.AddSwaggerGen(c =>
             {

@@ -14,8 +14,8 @@ namespace Sprint1.Repositories
         Employee GetEmployeeByName(string name);
         void DeleteEmployeeById(int id);
         void DeleteEmployeeByName(string name);
-        void UpdateEmployeeById(Employee employee);
-        void UpdateEmployeeByName(Employee employee);
+        void UpdateEmployee(Employee employee);
+        
         
     }
 }

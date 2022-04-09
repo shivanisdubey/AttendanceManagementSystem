@@ -22,23 +22,26 @@ namespace Sprint1.Controllers
             this.LeaveRepository = leaveRepository;
         }
         //EndPoints
-        [HttpGet("id")]
+        [HttpGet]
+        [Route("Get leaves by id/{employeeid}")]
         public List<Leaves> GetLeaves(int EmployeeId)
         {
             return LeaveRepository.GetLeaves(EmployeeId);
         }
         [HttpPost]
+        [Route("add leave")]
         public void AddLeave(Leaves leave)
         {
             LeaveRepository.AddLeave(leave);
         }
-        [HttpDelete]
-        public void DeleteLeavesRequest(Leaves leave)
-        {
+        //[HttpDelete]
+        //public void DeleteLeavesRequest(Leaves leave)
+        //{
 
-            LeaveRepository.DeleteLeavesRequest(leave);
-        }
-        [HttpPost("update_leave")]
+        //    LeaveRepository.DeleteLeaves(leave);
+        //}
+        [HttpPost]
+        [Route("update leaves")]
         public void UpdateLeave(Leaves leave)
         {
 

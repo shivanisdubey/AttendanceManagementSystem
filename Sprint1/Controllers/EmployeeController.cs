@@ -50,14 +50,14 @@ namespace Sprint1.Controllers
 
 
         [HttpGet]
-        [Route("GetEmployeesByDepartment")]
+        [Route("GetEmployeesByDepartment/{dept}")]
         public List<Employee> GetEmployeesByDepartment(string dept)
         {
             return employeerepository.GetEmployeesByDepartment(dept);
 
         }
         [HttpGet]
-        [Route("GetEmployeesByDesignation")]
+        [Route("GetEmployeesByDesignation/{designation}")]
         public List<Employee> GetEmployeesByDesignation(string designation)
         {
             return employeerepository.GetEmployeesByDesignation(designation);
@@ -71,7 +71,7 @@ namespace Sprint1.Controllers
         }
 
         [HttpPost]
-        [Route("")]
+        [Route("DeleteEmployeeByName/{name}")]
         public void DeleteEmployeeByName(string name)
         {
             employeerepository.DeleteEmployeeByName(name);
