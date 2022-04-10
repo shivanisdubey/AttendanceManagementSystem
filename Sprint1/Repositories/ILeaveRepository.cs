@@ -6,11 +6,11 @@ namespace Sprint1.Repositories
 {
     public interface ILeaveRepository
     {
-        void AddLeave(Leaves leave);
+        void AddLeave(int EmployeeId,DateTime LeaveStartDate,DateTime LeaveEndDate);
         void RemoveLeave(int LeaveId);
-        void UpdateLeave(Leaves leave);
+        void UpdateLeave(int LeaveId, DateTime LeaveStartDate, DateTime LeaveEndDate);
         List<Leaves> GetLeaves(int EmployeeId);
-        List<Leaves> PendingLeaveRequest(int EmployeeId);
-        void SetStatus(int LeaveId,bool status);
+        List<Leaves> PendingLeaveRequest();
+        void PendingLeaveResponse(int LeaveId,string LeaveStatus);
     }
 }

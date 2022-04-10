@@ -15,6 +15,6 @@ namespace Sprint1.Models
         public DateTime LeaveStartDate { get; set; }
         public DateTime LeaveEndDate { get; set; }
         public Employee Employee { get; set; }//Navigation Property
-        public bool Leavestatus { get; set; }
+        public string LeaveStatus { get; set; }
     }
 }

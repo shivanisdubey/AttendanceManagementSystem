@@ -6,11 +6,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Sprint1.Models
 {
-    [Keyless]
     public class Attendance
     {
         [ForeignKey("EmployeeId")]
         public  int EmployeeId { get; set; }
+        [Key]
+        public int AttendanceId { get; set; }
         public DateTime AttendanceDate { get;set;}
         public bool AttendanceCheck { get; set; }
         public Employee Employee { get; set; }//Navigation Property

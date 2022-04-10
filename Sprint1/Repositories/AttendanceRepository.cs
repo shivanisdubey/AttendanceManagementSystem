@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using Sprint1.Models;
 using Sprint1.Repositories;
+using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Sprint1.Repositories
 {
@@ -14,16 +16,36 @@ namespace Sprint1.Repositories
         {
             this.db = new SprintDbContext();
         }
-        public void AddAttendance(Attendance attendance)
+        public void AddAttendance(int employeeId, DateTime AttendanceDate, bool AttendanceCheck)
         {
-            db.Attendance.Add(attendance);
-            db.SaveChanges();
+                EmployeeProject e=(from p in db.EmployeeProject where p.EmployeeId==employeeId select p).Single();
+                if (e != null)
+                {
+                    Attendance attendance = new Attendance();
+                    attendance.EmployeeId = employeeId;
+                    attendance.AttendanceDate = AttendanceDate;
+                    attendance.AttendanceCheck = AttendanceCheck;
+                    db.Attendance.Add(attendance);
+                    db.SaveChanges();
+                }
+                else
+                {
+                    Console.WriteLine("Invalid Employee Id");
+                }
         }
 
-        public void DeleteAttendance(Attendance attendance)
+        public void DeleteAttendance(int AttendanceId)
         {
-            db.Remove(attendance);
-            db.SaveChanges();
+            Attendance attendance=db.Attendance.Find(AttendanceId);
+            if (attendance != null)
+            {
+                db.Remove(attendance);
+                db.SaveChanges();
+            }
+            else
+            {
+                Console.WriteLine("Invalid Attendance Id");
+            }
         }
 
         public List<Attendance> GetAttendance(int EmployeeId)
@@ -52,10 +74,20 @@ namespace Sprint1.Repositories
             return attendances;
         }
 
-        public void UpdateAttendance(Attendance attendance)
+        public void UpdateAttendance(int EmployeeId, DateTime Date,bool AttendanceCheck)
         {
-            db.Update(attendance);
-            db.SaveChanges();
+            List<Attendance> attendance = (from a in db.Attendance where a.EmployeeId == EmployeeId select a).ToList();
+            if (attendance != null)
+            {
+                Attendance a=(from b in attendance where b.AttendanceDate==Date select b).Single();
+                    a.AttendanceCheck = AttendanceCheck;
+                    db.Update(a);
+                    db.SaveChanges();
+            }
+            else
+            {
+                Console.WriteLine("Invalid Attendance Id");
+            }
         }
     }
 }

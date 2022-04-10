@@ -6,8 +6,8 @@ namespace Sprint1.Repositories
 {
     public interface IEmployeeProjectRepository
     {
-        void AddEmployeeProject(EmployeeProject project);
+        void AddEmployeeProject(int EmployeeId, int ProjectId);
         List<EmployeeProject> GetEmployeeProject(int ProjectId);
-        void UpdateEmployeeProject(EmployeeProject project);
+        void UpdateEmployeeProject(int NewProjectId, int EmployeeId, int ProjectId);
     }
 }

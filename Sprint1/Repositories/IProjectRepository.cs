@@ -6,8 +6,8 @@ namespace Sprint1.Repositories
 {
     public interface IProjectRepository
     {
-        void AddProject(Project project);
-        void UpdateProject(Project project);
+        void AddProject(string ProjectName);
+        void UpdateProject(string ProjectName);
         void DeleteProjectById(int ProjectId);
     }
 }

@@ -76,7 +76,8 @@ namespace Sprint1.Migrations
                 {
                     EmployeeId = table.Column<int>(type: "int", nullable: false),
                     LeaveStartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    LeaveEndDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    LeaveEndDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Leavestatus = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -92,12 +93,21 @@ namespace Sprint1.Migrations
                 name: "EmployeeProject",
                 columns: table => new
                 {
+                    EmployeeProjectId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     EmployeeId = table.Column<int>(type: "int", nullable: false),
                     ProjectId = table.Column<int>(type: "int", nullable: false),
                     ProjectName = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
+                    table.PrimaryKey("PK_EmployeeProject", x => x.EmployeeProjectId);
+                    table.ForeignKey(
+                        name: "FK_EmployeeProject_Employee_EmployeeId",
+                        column: x => x.EmployeeId,
+                        principalTable: "Employee",
+                        principalColumn: "EmployeeId",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_EmployeeProject_Project_ProjectId",
                         column: x => x.ProjectId,
@@ -109,6 +119,11 @@ namespace Sprint1.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Attendance_EmployeeId",
                 table: "Attendance",
+                column: "EmployeeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_EmployeeProject_EmployeeId",
+                table: "EmployeeProject",
                 column: "EmployeeId");
 
             migrationBuilder.CreateIndex(

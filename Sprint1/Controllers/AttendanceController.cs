@@ -42,21 +42,37 @@ namespace Sprint1.Controllers
         }
         [HttpPut]
         [Route("update attendance")]
-        public void UpdateAttendance(Attendance attendance)
+        public IActionResult UpdateAttendance(int EmployeeId, DateTime Date,bool AttendanceCheck)
         {
-            _attendanceRepository.UpdateAttendance(attendance);
+            try
+            {
+                _attendanceRepository.UpdateAttendance(EmployeeId, Date,AttendanceCheck);
+                return Ok("executed");
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
         [HttpPost]
         [Route("add attendance")]
-        public void AddAttendance(Attendance attendance)
+        public IActionResult AddAttendance(int employeeId, DateTime AttendanceDate, bool AttendanceCheck)
         {
-            _attendanceRepository.AddAttendance(attendance);
+            try
+            {
+                _attendanceRepository.AddAttendance(employeeId, AttendanceDate, AttendanceCheck);
+                return Ok("executed");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
         [HttpDelete]
-        [Route("delete attendance")]
-        public void DeleteAttendance(Attendance attendance)
+        [Route("delete attendance/{AttendanceId}")]
+        public void DeleteAttendance(int AttendanceId)
         {
-            _attendanceRepository.DeleteAttendance(attendance);
+            _attendanceRepository.DeleteAttendance(AttendanceId);
         }
     }
 }

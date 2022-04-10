@@ -18,9 +18,9 @@ namespace Sprint1.Controllers
         }
         [HttpGet]
         [Route("check login")]
-        public bool CheckLogin(Login login)
+        public bool CheckLogin(string Role, int EmployeeId, string Password)
         {
-            return _loginRepository.CheckLogin(login);
+            return _loginRepository.CheckLogin(Role, EmployeeId, Password);
         }
     }
 }

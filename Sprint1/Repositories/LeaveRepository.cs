@@ -14,10 +14,16 @@ namespace Sprint1.Repositories
         {
             this.db = new SprintDbContext();
         }
-        public void AddLeave(Leaves leave)
+        public void AddLeave(int EmployeeId, DateTime LeaveStartDate, DateTime LeaveEndDate)
         {
-                db.Leaves.Add(leave);
-                db.SaveChanges();
+            Employee e = db.Employee.Find(EmployeeId);
+            if (e != null) {
+                Leaves l = new Leaves();
+                l.EmployeeId = EmployeeId;
+                l.LeaveStartDate = LeaveStartDate;
+                l.LeaveEndDate=LeaveEndDate;
+                db.Leaves.Add(l);
+            }
         }
 
 
@@ -27,35 +33,51 @@ namespace Sprint1.Repositories
                 return leaves;
         }
 
-        public List<Leaves> PendingLeaveRequest(int employeeId)
+        public List<Leaves> PendingLeaveRequest()
         {
-            List<Leaves> leaves = (from i in db.Leaves where i.EmployeeId == employeeId where i.Leavestatus !=true where i.Leavestatus != false select i).ToList();
-            return leaves;
+            List<Leaves> l = (from n in db.Leaves where n.LeaveStatus == null select n).ToList();
+            if (l != null)
+            {
+                return l;
+            }
+            return null;
         }
 
-        public void RemoveLeave(Leaves leave)
+        public void PendingLeaveResponse(int LeaveId,string LeaveStatus)
         {
-                db.Leaves.Remove(leave);
+            Leaves l = db.Leaves.Find(LeaveId);
+            if (l != null)
+            {
+                l.LeaveStatus= LeaveStatus;
+                db.Leaves.Update(l);
                 db.SaveChanges();
+            }
         }
 
         public void RemoveLeave(int LeaveId)
         {
-            throw new NotImplementedException();
+            Leaves l = db.Leaves.Find(LeaveId);
+            if (l != null)
+            {
+                db.Leaves.Remove(l);
+            }
+            else
+            {
+                Console.WriteLine("Invalid LeaveId");
+            }
         }
 
-        public void SetStatus(int LeaveId,bool status)
-        {
-            Leaves leave = db.Leaves.Find(LeaveId);
-            leave.Leavestatus=status;
-            db.Leaves.Update(leave);
 
-        }
-
-        public void UpdateLeave(Leaves leave)
+        public void UpdateLeave(int LeaveId, DateTime LeaveStartDate, DateTime LeaveEndDate)
         {
-                db.Leaves.Update(leave);
+            Leaves l = db.Leaves.Find(LeaveId);
+            if (l != null)
+            {
+                l.LeaveEndDate = LeaveEndDate;
+                l.LeaveStartDate= LeaveStartDate;
+                db.Leaves.Update(l);
                 db.SaveChanges();
+            }
         }
     }
 }

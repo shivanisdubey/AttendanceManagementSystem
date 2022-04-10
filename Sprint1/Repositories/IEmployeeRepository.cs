@@ -10,7 +10,7 @@ namespace Sprint1.Repositories
         void AddEmployee(Employee employee);
         Employee GetEmployeeById(int id);
         void DeleteEmployeeById(int id);
-        void UpdateEmployee(Employee employee);
+        void UpdateEmployee(string EmployeeName,string EmployeeEmailId,DateTime EmployeeDOB,string EmployeeDesignation,string EmployeeDepartment);
         
         
     }

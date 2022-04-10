@@ -6,6 +6,6 @@ namespace Sprint1.Repositories
 {
     public interface ILoginRepository
     {
-        bool CheckLogin(Login login);
+        bool CheckLogin(string Role,int EmployeeId,string Password);
     }
 }

@@ -41,9 +41,13 @@ namespace Sprint1
             List<Employee> employee = (from i in dbContext.Employee select i).ToList();
             return employee;
         }
-        public void UpdateEmployee(Employee employee)
+        public void UpdateEmployee(string EmployeeName,string EmployeeEmailId, DateTime EmployeeDOB, string EmployeeDesignation, string EmployeeDepartment)
         {
-            dbContext.Employee.Update(employee);
+            Employee e = (from em in dbContext.Employee where em.EmployeeName ==EmployeeName select em).Single();
+            e.EmployeeDOB = EmployeeDOB;
+            e.EmployeeDesignation = EmployeeDesignation;
+            e.EmployeeDepartment = EmployeeDepartment;
+            e.EmployeeEmailId=EmployeeEmailId;
             dbContext.SaveChanges();
         }
 

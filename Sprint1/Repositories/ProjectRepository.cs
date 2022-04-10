@@ -14,12 +14,14 @@ namespace Sprint1.Repositories
             this.db = new SprintDbContext();
 
         }
-        public void AddProject(Project project)
+        public void AddProject(string ProjectName)
         {
 
             try
             {
-                db.Project.Add(project);
+                Project p=new Project();
+                p.ProjectName= ProjectName;
+                db.Project.Add(p);
                 db.SaveChanges();
 
             }
@@ -44,12 +46,17 @@ namespace Sprint1.Repositories
             }
         }
 
-        public void UpdateProject(Project project)
+        public void UpdateProject(string ProjectName)
         {
             try
             {
-                db.Project.Update(project);
-                db.SaveChanges();
+                Project p=(from n in db.Project where n.ProjectName==ProjectName select n).FirstOrDefault();
+                if (p != null)
+                {
+                    p.ProjectName = ProjectName;
+                    db.Project.Update(p);
+                    db.SaveChanges();
+                }
             }
             catch (Exception e)
             {

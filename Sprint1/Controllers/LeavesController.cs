@@ -30,9 +30,9 @@ namespace Sprint1.Controllers
         }
         [HttpPost]
         [Route("add leave")]
-        public void AddLeave(Leaves leave)
+        public void AddLeave(int EmployeeId, DateTime LeaveStartDate, DateTime LeaveEndDate)
         {
-            LeaveRepository.AddLeave(leave);
+            LeaveRepository.AddLeave(EmployeeId, LeaveStartDate, LeaveEndDate);
         }
         //[HttpDelete]
         //public void DeleteLeavesRequest(Leaves leave)
@@ -42,24 +42,23 @@ namespace Sprint1.Controllers
         //}
         [HttpPut]
         [Route("update leaves")]
-        public void UpdateLeave(Leaves leave)
+        public void UpdateLeave(int LeaveId, DateTime LeaveStartDate, DateTime LeaveEndDate)
         {
 
-            LeaveRepository.UpdateLeave(leave);
+            LeaveRepository.UpdateLeave(LeaveId, LeaveStartDate,LeaveEndDate);
         }
-        [HttpPut]
-        [Route("set leavesStatus")]
-        public void SetStatus(int LeaveId, bool status)
-        {
-            LeaveRepository.SetStatus(LeaveId, status);
-        }
+        
         [HttpPost]
-        [Route("view pendingleaves/{employeeId}")]
-        public List<Leaves> PendingLeaveRequest(int employeeId)
+        [Route("view pendingleavesResponse")]
+        public void PendingLeaveResponse(int LeaveId,string LeaveStatus)
         {
-            return LeaveRepository.PendingLeaveRequest(employeeId);
+            LeaveRepository.PendingLeaveResponse(LeaveId,LeaveStatus);
         }
-
-
+        [HttpGet]
+        [Route("Get pendingLeaves/{pendingleaverequest}")]
+        public List<Leaves> PendingLeaveRequest()
+        {
+            return LeaveRepository.PendingLeaveRequest();
+        }
     }
 }

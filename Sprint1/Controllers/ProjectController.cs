@@ -20,11 +20,11 @@ namespace Sprint1.Controllers
         }
         [HttpPost]
         [Route("Add Project")]
-        public IActionResult AddProject(Project project)
+        public IActionResult AddProject(string ProjectName)
         {
             try
             {
-                _projectRepository.AddProject(project);
+                _projectRepository.AddProject(ProjectName);
                 return Ok("Project Added");
             }
             catch(Exception ex)
@@ -35,9 +35,9 @@ namespace Sprint1.Controllers
 
         [HttpPut]
         [Route("Update Project")]
-        public void UpdateProject(Project project)
+        public void UpdateProject(string ProjectName)
         {
-            _projectRepository.UpdateProject(project);
+            _projectRepository.UpdateProject(ProjectName);
         }
 
         [HttpDelete]

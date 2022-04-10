@@ -48,9 +48,9 @@ namespace Sprint1.Controllers
         }
         [HttpPut]
         [Route("UpdateEmployee")]
-        public void UpdateEmployee(Employee employee)
+        public void UpdateEmployee(string EmployeeName, string EmployeeEmailId, DateTime EmployeeDOB, string EmployeeDesignation, string EmployeeDepartment)
         {
-            employeerepository.UpdateEmployee(employee);
+            employeerepository.UpdateEmployee(EmployeeName,EmployeeEmailId,EmployeeDOB, EmployeeDesignation, EmployeeDepartment);
         }
 
     }

@@ -71,6 +71,11 @@ namespace Sprint1.Migrations
 
             modelBuilder.Entity("Sprint1.Models.EmployeeProject", b =>
                 {
+                    b.Property<int>("EmployeeProjectId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
                     b.Property<int>("EmployeeId")
                         .HasColumnType("int");
 
@@ -79,6 +84,10 @@ namespace Sprint1.Migrations
 
                     b.Property<string>("ProjectName")
                         .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("EmployeeProjectId");
+
+                    b.HasIndex("EmployeeId");
 
                     b.HasIndex("ProjectId");
 
@@ -95,6 +104,9 @@ namespace Sprint1.Migrations
 
                     b.Property<DateTime>("LeaveStartDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<bool>("Leavestatus")
+                        .HasColumnType("bit");
 
                     b.HasIndex("EmployeeId");
 
@@ -143,11 +155,19 @@ namespace Sprint1.Migrations
 
             modelBuilder.Entity("Sprint1.Models.EmployeeProject", b =>
                 {
+                    b.HasOne("Sprint1.Models.Employee", "Employee")
+                        .WithMany()
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Sprint1.Models.Project", "Project")
                         .WithMany()
                         .HasForeignKey("ProjectId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Employee");
 
                     b.Navigation("Project");
                 });

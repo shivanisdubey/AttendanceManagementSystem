@@ -13,17 +13,37 @@ namespace Sprint1.Repositories
         {
             this.db = new SprintDbContext();
         }
-        public void AddEmployeeProject(EmployeeProject project)
+        public void AddEmployeeProject(int EmployeeId, int ProjectId)
         {
-            db.Add(project);
-            db.SaveChanges();
+            Employee emp = db.Employee.Find(EmployeeId);
+            Project pro = db.Project.Find(ProjectId);
+                if (emp != null && pro != null)
+                {
+                    EmployeeProject obj = new EmployeeProject();
+                    obj.EmployeeId = EmployeeId;
+                    obj.ProjectId = ProjectId;
+                     Project pr=(from p in db.Project where p.ProjectId==ProjectId select p).FirstOrDefault();
+                obj.ProjectName = pr.ProjectName;
+                    db.EmployeeProject.Add(obj);
+                    db.SaveChanges();
+                }
         }
 
 
-        public void UpdateEmployeeProject(EmployeeProject project)
+        public void UpdateEmployeeProject(int NewProjectId, int EmployeeId, int ProjectId)
         {
-            db.Update(project);
-            db.SaveChanges();
+            EmployeeProject obj = db.EmployeeProject.Find(NewProjectId);
+            if (obj != null)
+            {
+                Employee emp = db.Employee.Find(EmployeeId);
+                Project pro = db.Project.Find(ProjectId);
+                if (emp != null && pro != null)
+                {
+                    obj.ProjectId = ProjectId;
+                    db.EmployeeProject.Update(obj);
+                    db.SaveChanges();
+                }
+            }
         }
 
         public List<EmployeeProject> GetEmployeeProject(int id)

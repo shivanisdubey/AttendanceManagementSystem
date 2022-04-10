@@ -18,16 +18,16 @@ namespace Sprint1.Controllers
         }
         [HttpPost]
         [Route("add employeeProject")]
-        public void AddEmployeeProject(EmployeeProject project)
+        public void AddEmployeeProject(int EmployeeId, int ProjectId)
         {
-            _employeeProjectRepository.AddEmployeeProject(project); 
+            _employeeProjectRepository.AddEmployeeProject(EmployeeId,ProjectId); 
         }
         
         [HttpPut]
         [Route("update employeeProject")]
-        public void UpdateEmployeeProject(EmployeeProject project)
+        public void UpdateEmployeeProject(int NewProjectId, int EmployeeId, int ProjectId)
         {
-            _employeeProjectRepository.UpdateEmployeeProject(project);
+            _employeeProjectRepository.UpdateEmployeeProject(NewProjectId,EmployeeId, ProjectId);
         }
         [HttpGet]
         public List<EmployeeProject> GetEmployeeProject(int id)

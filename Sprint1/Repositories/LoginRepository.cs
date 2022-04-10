@@ -15,12 +15,19 @@ namespace Sprint1.Repositories
         {
             this.db = new SprintDbContext();
         }
-        public bool CheckLogin(Login login)
+        public bool CheckLogin(string Role, int EmployeeId, string Password)
         {
-            var res = db.Login.Where(x => x.EmployeeId == login.EmployeeId && x.Password == login.Password).ToList();
-            if (res != null && res.Count == 1)
+            Login l = db.Login.Find(EmployeeId);
+            if (l != null)
             {
-                return true;
+                Login l1 = new Login();
+                l1.Role = Role;
+                l1.EmployeeId = EmployeeId;
+                l1.Password=Password;
+                if (l.Equals(l1))
+                {
+                    return true;
+                }
             }
             return false;
         }
