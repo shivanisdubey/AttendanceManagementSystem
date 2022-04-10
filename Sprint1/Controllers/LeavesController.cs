@@ -40,12 +40,24 @@ namespace Sprint1.Controllers
 
         //    LeaveRepository.DeleteLeaves(leave);
         //}
-        [HttpPost]
+        [HttpPut]
         [Route("update leaves")]
         public void UpdateLeave(Leaves leave)
         {
 
             LeaveRepository.UpdateLeave(leave);
+        }
+        [HttpPut]
+        [Route("set leavesStatus")]
+        public void SetStatus(int LeaveId, bool status)
+        {
+            LeaveRepository.SetStatus(LeaveId, status);
+        }
+        [HttpPost]
+        [Route("view pendingleaves/{employeeId}")]
+        public List<Leaves> PendingLeaveRequest(int employeeId)
+        {
+            return LeaveRepository.PendingLeaveRequest(employeeId);
         }
 
 

@@ -28,24 +28,12 @@ namespace Sprint1
         {
             Employee employee = dbContext.Employee.Find(EmployeeId);
             dbContext.Remove(employee);
+            dbContext.SaveChanges();
         }
-
-        public void DeleteEmployeeByName(string name) //
-        {
-            Employee employee = dbContext.Employee.Find(name);
-            dbContext.Remove(employee);
-
-        }
-
         public Employee GetEmployeeById(int EmployeeId)
         {
             return dbContext.Employee.Find(EmployeeId);
 
-        }
-
-        public Employee GetEmployeeByName(string name)
-        {
-            return dbContext.Employee.Find(name);
         }
 
         public List<Employee> GetEmployees()
@@ -53,20 +41,6 @@ namespace Sprint1
             List<Employee> employee = (from i in dbContext.Employee select i).ToList();
             return employee;
         }
-
-
-        public List<Employee> GetEmployeesByDepartment(string department)
-        {
-            List<Employee> employee = (from e in dbContext.Employee where e.EmployeeDepartment == department select e).ToList();
-            return employee;
-        }
-
-        public List<Employee> GetEmployeesByDesignation(string designation)
-        {
-            List<Employee> employee = (from e in dbContext.Employee where e.EmployeeDesignation == designation select e).ToList();
-            return employee;
-        }
-
         public void UpdateEmployee(Employee employee)
         {
             dbContext.Employee.Update(employee);

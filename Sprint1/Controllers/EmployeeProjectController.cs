@@ -22,23 +22,12 @@ namespace Sprint1.Controllers
         {
             _employeeProjectRepository.AddEmployeeProject(project); 
         }
-        [HttpPost]
-        [Route("add employeeProject by id")]
-        public void AddEmployeeProjectByProjectId(int Empid, int ProID)
+        
+        [HttpPut]
+        [Route("update employeeProject")]
+        public void UpdateEmployeeProject(EmployeeProject project)
         {
-            _employeeProjectRepository.AddEmployeeProjectByProjectId(Empid, ProID);
-        }
-        [HttpPost]
-        [Route("add employeeProject by name")]
-        public void AddEmployeeProjectByProjectName(int EmployeeId, string ProjectName)
-        {
-            _employeeProjectRepository.AddEmployeeProjectByProjectName(EmployeeId, ProjectName); 
-        }
-        [HttpPost]
-        [Route("delete employeeProject")]
-        public void DeleteEmployeeProject(EmployeeProject project)
-        {
-            _employeeProjectRepository.DeleteEmployeeProject(project);
+            _employeeProjectRepository.UpdateEmployeeProject(project);
         }
         [HttpGet]
         public List<EmployeeProject> GetEmployeeProject(int id)

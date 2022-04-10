@@ -19,21 +19,10 @@ namespace Sprint1.Repositories
             db.SaveChanges();
         }
 
-        public void AddEmployeeProjectByProjectId(int Empid, int ProID)
-        {
-            db.Add(new EmployeeProject() { EmployeeId = Empid, ProjectId = ProID });
-            db.SaveChanges();
-        }
 
-        public void AddEmployeeProjectByProjectName(int EmployeeId, string ProjectName)
+        public void UpdateEmployeeProject(EmployeeProject project)
         {
-            db.Add(new EmployeeProject() { EmployeeId = EmployeeId, ProjectName = ProjectName });
-            db.SaveChanges();
-        }
-
-        public void DeleteEmployeeProject(EmployeeProject project)
-        {
-            db.Remove(project);
+            db.Update(project);
             db.SaveChanges();
         }
 

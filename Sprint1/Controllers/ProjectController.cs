@@ -33,14 +33,14 @@ namespace Sprint1.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpPut]
         [Route("Update Project")]
         public void UpdateProject(Project project)
         {
             _projectRepository.UpdateProject(project);
         }
 
-        [HttpPost]
+        [HttpDelete]
         [Route("Delete Project")]
         public void DeleteProjectById(int Pid)
         {

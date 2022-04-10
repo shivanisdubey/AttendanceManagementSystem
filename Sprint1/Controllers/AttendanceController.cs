@@ -40,7 +40,7 @@ namespace Sprint1.Controllers
         {
             return _attendanceRepository.GetAttendanceByYear(EmployeeId, year);
         }
-        [HttpPost]
+        [HttpPut]
         [Route("update attendance")]
         public void UpdateAttendance(Attendance attendance)
         {
@@ -52,7 +52,7 @@ namespace Sprint1.Controllers
         {
             _attendanceRepository.AddAttendance(attendance);
         }
-        [HttpPost]
+        [HttpDelete]
         [Route("delete attendance")]
         public void DeleteAttendance(Attendance attendance)
         {

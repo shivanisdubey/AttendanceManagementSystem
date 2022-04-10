@@ -9,11 +9,12 @@ namespace Sprint1.Models
     [Keyless]
     public class Leaves
     {
-        [ForeignKey("Employee")]
+        [ForeignKey("EmployeeId")]
         public int EmployeeId { get; set; }
         private int LeaveId { get; set; }
         public DateTime LeaveStartDate { get; set; }
         public DateTime LeaveEndDate { get; set; }
         public Employee Employee { get; set; }//Navigation Property
+        public bool Leavestatus { get; set; }
     }
 }

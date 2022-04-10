@@ -17,7 +17,7 @@ namespace Sprint1
         public DbSet<EmployeeProject> EmployeeProject { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=LAPTOP-QG4MR7TL;Database=Sprint1_Attendance&LeaveManagement;integrated security=true");
+            optionsBuilder.UseSqlServer(@"Server=LAPTOP-QG4MR7TL;Database=Attendance&LeaveManagement;integrated security=true");
         }
         
     }

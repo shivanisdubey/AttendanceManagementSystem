@@ -40,34 +40,17 @@ namespace Sprint1.Controllers
             Employee employee = employeerepository.GetEmployeeById(id);
             return (employee);
         }
-
-        [HttpGet]
-        [Route("GetEmployeeByName/{name}")]
-        public Employee GetEmployeeByName(string name)
-        {
-            return employeerepository.GetEmployeeByName(name);
-        }
-
-
-        [HttpGet]
-        [Route("GetEmployeesByDepartment/{dept}")]
-        public List<Employee> GetEmployeesByDepartment(string dept)
-        {
-            return employeerepository.GetEmployeesByDepartment(dept);
-
-        }
-        [HttpGet]
-        [Route("GetEmployeesByDesignation/{designation}")]
-        public List<Employee> GetEmployeesByDesignation(string designation)
-        {
-            return employeerepository.GetEmployeesByDesignation(designation);
-        }
-
-        [HttpPost]
+        [HttpDelete]
         [Route("DeleteEmployeeByID/{id}")]
         public void DeleteEmployeeByID(int id)
         {
             employeerepository.DeleteEmployeeById(id);
+        }
+        [HttpPut]
+        [Route("UpdateEmployee")]
+        public void UpdateEmployee(Employee employee)
+        {
+            employeerepository.UpdateEmployee(employee);
         }
 
     }

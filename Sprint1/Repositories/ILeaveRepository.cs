@@ -10,5 +10,7 @@ namespace Sprint1.Repositories
         void RemoveLeave(int LeaveId);
         void UpdateLeave(Leaves leave);
         List<Leaves> GetLeaves(int EmployeeId);
+        List<Leaves> PendingLeaveRequest(int EmployeeId);
+        void SetStatus(int LeaveId,bool status);
     }
 }
